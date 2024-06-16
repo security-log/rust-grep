@@ -5,8 +5,8 @@ use std::io::{self, BufRead, BufReader};
 
 fn main() {
     let args = App::new("Rust Grep")
-        .version("0.2")
-        .about("Searrchs for patterns")
+        .version("1.0")
+        .about("Searchs for patterns")
         .arg(
             Arg::with_name("pattern")
                 .takes_value(true)
@@ -16,7 +16,7 @@ fn main() {
         .arg(
             Arg::with_name("input")
                 .takes_value(true)
-                .required(true)
+                .required(false)
                 .help("This is the path for the file to read"),
         )
         .get_matches();
@@ -27,7 +27,7 @@ fn main() {
     let re = Regex::new(pattern).unwrap();
 
     if path == "-" {
-        // If not a file patch == "-"
+        // If not a file path == "-"
         let stdin = io::stdin();
         let reader = stdin.lock();
 
